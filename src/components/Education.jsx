@@ -1,4 +1,5 @@
 import React from 'react'
+import eduPic from '../assets/education-img.png'
 const Education = () => {
     return (
         <div className='education' style={{ height: '100%' }}>
@@ -38,7 +39,7 @@ const Education = () => {
                     </div>
                 </div>
                 <div className=" col-md-4 col-sm-10 col-10 education-img">
-                    <img src="./src/assets/education-img.png" alt="" width={400} height={350} />
+                    <img src={eduPic} alt="" width={400} height={350} />
                 </div>
             </div>
         </div>

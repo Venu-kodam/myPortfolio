@@ -94,9 +94,10 @@
     flex-wrap: wrap !important;
 }
 
-.heading {
-    color: #eaeaea !important;
-    opacity: 0.8 !important;
+#designation {
+    font-size: 30px !important;
+    color: #9d09e2 !important;
+    font-weight: 600;
 }
 
 .p {
@@ -168,9 +169,34 @@
 .about-heading{
     animation: slideright 2s ease-out;
 }
+.name{
+    animation: slideleft 2s ease-out;
+}
+.desc{
+    animation: toTop 2s ease-out;
+}
+.nav-anim{
+    animation: NavtoTop 1.4s ease-out;
+}
 @keyframes toBottom {
     0% {
         transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+@keyframes toTop {
+    0% {
+        transform: translateY(200%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+@keyframes NavtoTop {
+    0% {
+        transform: translateY(100%);
     }
     100% {
         transform: translateY(0);
@@ -414,6 +440,9 @@
         width: 50% !important;
         padding-top: 100px !important;
     }
+    .container-right .content h1{
+        font-size: 30px !important;
+    }
 
     .buttons {
         flex-direction: column !important;
@@ -465,9 +494,8 @@
     .container-right .content {
         width: 90% !important;
     }
-
     .container-right .heading,
-    h1,
+    .hello, h1,
     p {
         text-align: center !important;
     }
@@ -571,5 +599,13 @@
 
     .icons {
         padding: 0 10px !important;
+    }
+    .container-right .content .heading{
+        display: none !important;
+    }
+    #designation{
+        display: flex;
+        justify-content: center !important;
+        font-size: 26px !important;
     }
 }

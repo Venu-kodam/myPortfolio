@@ -27,16 +27,16 @@ const Navbar = () => {
                                     <Link className="nav-link active text-white" aria-current="page" to='/' style={{ color: '#C741FC' }}>Home</Link>
                                 </li>
                                 <li className="nav-item mx-3">
-                                    <Link className="nav-link text-white" to='/about' >About</Link>
+                                    <Link className="nav-link nav-anim text-white" to='/about' >About</Link>
                                 </li>
                                 <li className="nav-item mx-3">
-                                    <Link className="nav-link text-white" to="/skills" >Skills</Link>
+                                    <Link className="nav-link nav-anim text-white" to="/skills" >Skills</Link>
                                 </li>
                                 <li className="nav-item mx-3">
-                                    <Link className="nav-link text-white" to="/projects" >Projects</Link>
+                                    <Link className="nav-link  nav-anim text-white" to="/projects" >Projects</Link>
                                 </li>
                                 <li className="nav-item mx-3">
-                                    <Link className="nav-link text-white" to="/contact" >Contact</Link>
+                                    <Link className="nav-link nav-anim text-white" to="/contact" >Contact</Link>
                                 </li>
                             </ul>
                         </div>
