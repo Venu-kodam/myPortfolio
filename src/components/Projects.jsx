@@ -1,49 +1,60 @@
 import React from 'react'
-import netflixImg from '../assets/netflix-symbol-black.png'
-import weatherImg from '../assets/weather icon.avif'
-import cartImg from '../assets/cart.avif'
-const Projects = () => {
+import { assets, ProjectData } from '../assets/assets'
+import { motion } from 'motion/react'
+const Projects = ({ isDarkMode }) => {
     return (
-        <div>
-            <h1 className='text-center eheading' style={{ fontSize: '60px', color: '#9d09e2',paddingTop:'90px' }}>Projects</h1>
-            <div class="cards d-flex align-items-center justify-content-center gap-4 flex-wrap" style={{padding:'100px 0'}}>
-                <div class="card projects" style={{ width: '20rem' }}>
-                    <img src={netflixImg} class="card-img-top" alt="..." width={350} height={350} />
-                    <div class="layer">
-                        <h5>Netflix Clone(React)</h5>
-                        <p>A Netflix clone project is a web application that replicates the functionality and
-                            features
-                            of the original Netflix platform. The project involves creating a user-friendly
-                            interface.
-                        </p>
-                        <a href="https://github.com/Venu-kodam/Netflix-Clone-React" target="_blank"><i
-                            class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-                <div class="card projects" style={{ width: '20rem' }}>
-                    <img src={weatherImg} class="card-img-top" alt="..." width={350} height={350} />
-                    <div class="layer">
-                        <h5>Weather Application React</h5>
-                        <p>The Weather Application is a React-based project that provides users with real-time weather
-                            information and a 7-day forecast for their selected location.</p>
-                        <a href="https://github.com/Venu-kodam/Weather-App" target="_blank"><i
-                            class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-                <div class="card projects" style={{ width: '20rem' }}>
-                    <img src={cartImg} class="card-img-top" alt="..." width={350} height={350} />
-                    <div class="layer">
-                        <h5>React Shopping Cart</h5>
-                        <p>Shopping Cart is a e-commerce cart management system designed to enhance the online shopping
-                            experience. Developed using the Redux Toolkit, this project ensures state management is
-                            efficient.</p>
-                        <a href="https://github.com/Venu-kodam/Shopping-cart" target="_blank">
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className='w-full px-[8%] py-10 scroll-mt-20'>
+            <motion.h1
+                initial={{ y: -20, opacity: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.5 }}
+                className='text-center text-5xl' id='projects'>Projects</motion.h1>
+            <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.5 }}
+                className='text-center max-w-2xl mx-auto mt-5 mb-12 '>Welcome to my web development portfolio! Explore a collection of projects showcasing my expertize in full stack development.</motion.p>
+            <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0.5 }}
+                className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-10 gap-5'>
+                {
+                    ProjectData.map((project, index) => (
+                        <motion.div
+                            whileHover={{ scale:1.05 }}
+                            transition={{ duration:0.3 }}
+                            key={index} className='aspect-square bg-no-repeat bg-cover 
+                        bg-center rounded-lg relative cursor-pointer group'
+                            style={{ backgroundImage: `url(${project.bgImage})` }}>
+                            <div className='bg-white rounded-md w-10/12 absolute bottom-5 
+                            left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between  
+                            duration-500 group-hover:bottom-7'>
+                                <div>
+                                    <h2 className='font-semibold dark:text-black'>{project.title}</h2>
+                                    <p className='text-sm text-gray-700'>{project.description}</p>
+                                </div>
+                                <div className='w-9 aspect-square flex items-center justify-center border rounded-full border-black shadow-[2px_2px_10px_#000] group-hover:bg-violet-300'>
+                                <a href={project.url} target="_blank"><img src={assets.link_icon} className='w-5' alt="" /></a>
+                                </div>
+                            </div>
+                        </motion.div>
+                    ))
+                }
+            </motion.div>
+            <motion.button 
+            initial={{opacity:0}}
+            whileInView={{opacity:1}} 
+            transition={{duration:1,delay:0.6}} 
+             className='w-max flex items-center justify-center gap-2 py-3 px-8 mx-auto my-20 hover:bg-lightHover  duration-500 rounded-full
+             text-gray-700 border-gray-700 border-[0.5px] dark:text-white dark:border-white dark:hover:bg-darkHover'>
+                Show more <img src={isDarkMode ? assets.right_arrow_bold_dark : assets.right_arrow_bold} className='w-4' alt="" />
+            </motion.button>
+        </motion.div>
     )
 }
 

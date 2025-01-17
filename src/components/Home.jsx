@@ -1,45 +1,52 @@
-import React, { useEffect, useRef } from 'react'
-import Typed from 'typed.js';
-import { Link } from 'react-router-dom'
-import profile from '../assets/mypicc.jpg'
-import resume from '../assets/Venu resume_WebDevelopment.pdf'
-
+import React from 'react'
+import { assets } from '../assets/assets';
+import {motion} from 'motion/react'
 const Home = () => {
-  // const el = useRef(null);
-  useEffect(() => {
-    const typed = new Typed("#designation", {
-      strings: ['Full Stack Developer...', 'Web Developer...','Programmer...','Full Stack Developer...'],
-      typeSpeed: 60,
-    });
-
-    return () => {
-      // Destroy Typed instance during cleanup to stop animation
-      typed.destroy();
-    };
-  }, []);
   return (
-    <>
-      <div className="row" >
-        <div className="col-md-4 containerleft">
-        </div>
-        <img src={profile} className='header-img' style={{width:'400px',height:'400px',borderRadius:'50%'}}/>
-        <div className="col-md-8 container-right  ">
-          <div className="row align-items-center justify-content-center">
-            <div className="col-md-12 content">
-              <h5 className='hello my-3' style={{color: '#eaeaea'}}>Hello, It's me</h5>
-              <h1 className=' fw-bolder name' style={{color:'#9d09e2',fontSize:'50px'}}>Venusai Kodam</h1>
-              <span className='heading my-3'  style={{color: '#eaeaea',fontSize:'30px'}}>And I'm a  </span> <span id="designation"></span>
-              <p className='p desc'>Welcome to my Portfolio! I am a passionate  Fullstack developer <br /> with expertise in creating dynamic and responsive websites. <br /> Explore my projects to see innovative solutions.</p>
-              <div className="buttons d-flex align-items-center my-5 gap-4">
-                <a type="button" href={resume} className="btn me-5 download-btn py-3 px-5" download>Resume</a>
-                <Link type="button" className="btn me-5 contact-btn  py-3 px-5" to="/contact">Contact</Link>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div className='w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4' id='home'>
+      <motion.div
+      initial={{scale:0}}
+      whileInView={{scale:1}} 
+      transition={{duration:0.8,type:'spring',stiffness:100}}
+      >
+        <img src={assets.profile} className='rounded-full w-28 h-28' alt="" />
+      </motion.div>
+      <motion.h3 
+      initial={{y:-20,opacity:0}}
+      whileInView={{opacity:1,y:0}} 
+      transition={{duration:0.6,delay:0.4}}
+      className='flex items-end gap-2 text-xl md:text-2xl mb-3'>
+        Hi! I'm Venusai Kodam <img src={assets.hand_icon} className='w-6' alt="" />
+      </motion.h3>
+      <motion.h1
+      initial={{y:-30,opacity:0}}
+      whileInView={{opacity:1,y:0}} 
+      transition={{duration:0.8,delay:0.5}} 
+      className='text-3xl sm:text-6xl lg:text-[66px] '>
+        Fullstack Developer
+      </motion.h1>
+      <motion.p 
+      initial={{opacity:0}}
+      whileInView={{opacity:1}} 
+      transition={{duration:0.6,delay:0.4}} 
+      className='max-w-2xl mx-auto'>I specialize in building dynamic,user-friendly and responsive websites using modern technologies like React, Next.js and Express.js. I'm dedicated to creating impactful digital experiences.Checkout my projects to see innovative solutions.</motion.p>
+      <div className='flex flex-col sm:flex-row items-center gap-4 mt-4'>
+        <motion.a
+        initial={{y:30,opacity:0}}
+        whileInView={{opacity:1,y:0}} 
+        transition={{duration:0.6,delay:1.2}}  
+        href={assets.resume} download className='px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 bg-white dark:text-black'>
+          Download Resume <img src={assets.download_icon} className='rounded-full w-4' alt="" />
+        </motion.a>
+        <motion.a 
+        initial={{y:30,opacity:0}}
+        whileInView={{opacity:1,y:0}} 
+        transition={{duration:0.6,delay:1}} 
+         href="#contact" className='px-10 py-3 border rounded-full bg-black text-white border-white outline-none flex items-center gap-2  dark:bg-transparent'>
+          Let's collaborate<img src={assets.right_arrow_white} className='rounded-full w-4' alt="" />
+        </motion.a>
       </div>
-      
-    </>
+    </div>
   )
 }
 

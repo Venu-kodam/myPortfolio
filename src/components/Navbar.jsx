@@ -1,49 +1,65 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useRef, useState } from 'react'
+import { assets } from '../assets/assets'
+const Navbar = ({isDarkMode, setIsDarkMode}) => {
+    const sideMenuref = useRef()
+    const [isscroll, setIsScroll] = useState(false)
 
-const Navbar = () => {
-    const [expand, setExpand] = useState(false)
-    const handleToggle = () => {
-        setExpand(!expand)
+    const openMenu = ()=>{
+        sideMenuref.current.style.transform = 'translateX(-16rem)'
     }
-    const handleClose = () => {
-        setExpand(false)
+    const closeMenu = ()=>{
+        sideMenuref.current.style.transform = 'translateX(16rem)'
     }
+
+    useEffect(()=>{
+        window.addEventListener('scroll',()=>{
+            if(scrollY>50){
+                setIsScroll(true)
+            }
+            else{
+                setIsScroll(false)
+            }
+        })
+    },[])
     return (
-        <div>
-            <nav className="navbar navbar-expand-lg bg-black fixed-top py-3">
-                <div className="container">
-                    <a className="navbar-brand text-white fs-3" href="#" style={{fontFamily:'"Playwrite MX", cursive'}}>Portfolio</a>
-                    <button className="navbar-toggler border border-white" onClick={handleToggle} type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-expanded={expand} aria-label="Toggle navigation">
-                    <i class="fa-solid fa-bars text-white" style={{fontSize:'36px'}}></i>
+        <>
+            <div className='fixed top-0 right-0 w-11/12 -z-10 translate-y-[-80%] dark:hidden'>
+                <img src={assets.header_bg_color} className='w-full' alt="" />
+            </div>
+            <nav className={`w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-10 ${isscroll?'bg-white bg-opacity-50 backdrop-blur-lg shadow-sm dark:bg-darkTheme dark:shadow-white/20':''}`}>
+                <a className="w-28 cursor-pointer text-2xl md:text-4xl " href="#" style={{ fontFamily: '"Playwrite MX", cursive' }}>Portfolio</a>
+                <ul className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 ${isscroll?'':'bg-white shadow-sm bg-opacity-50 dark:border dark:border-white/20 dark:bg-transparent'} `}>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                </ul>
+                <div className='flex items-center gap-3'>
+                    {/* button for darkmode and light mode */}
+                    <button onClick={()=>setIsDarkMode(prev=>!prev)}>
+                        <img src={isDarkMode? assets.sun_icon :assets.moon_icon} className='w-6' alt="" />
                     </button>
-                    <div className={`offcanvas offcanvas-end text-bg-dark ${expand && 'show'}`} tabIndex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel" style={{ width: '250px' }}>
-                        <div className="offcanvas-header text-end" >
-                            <i class="fa-solid fa-xmark fs-1 p-3" style={{color:'#C741FC',cursor:'pointer'}} onClick={handleClose}></i>
-                        </div>
-                        <div className="offcanvas-body">
-                            <ul className="navbar-nav mb-2 mb-lg-0 ms-auto fs-5 text-center">
-                                <li className="nav-item  mx-3">
-                                    <Link className="nav-link active text-white" aria-current="page" to='/' style={{ color: '#C741FC' }}>Home</Link>
-                                </li>
-                                <li className="nav-item mx-3">
-                                    <Link className="nav-link nav-anim text-white" to='/about' >About</Link>
-                                </li>
-                                <li className="nav-item mx-3">
-                                    <Link className="nav-link nav-anim text-white" to="/skills" >Skills</Link>
-                                </li>
-                                <li className="nav-item mx-3">
-                                    <Link className="nav-link  nav-anim text-white" to="/projects" >Projects</Link>
-                                </li>
-                                <li className="nav-item mx-3">
-                                    <Link className="nav-link nav-anim text-white" to="/contact" >Contact</Link>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    <a href="#contact" className='hidden lg:flex items-center gap-3 px-8 py-2.5 border border-gray-500 rounded-full ml-4 dark:border-white/50'>Contact
+                        <img src={ isDarkMode?assets.arrow_icon_dark:assets.arrow_icon} className='w-3' alt="" />
+                    </a>
+                    <button onClick={openMenu} className='block md:hidden  ml-3'>
+                        <img  src={isDarkMode?assets.menu_white:assets.menu_black} className='w-6 ' alt="" />
+                    </button>
                 </div>
+
+                {/* -------- mobile menu --------- */}
+                <ul ref={sideMenuref} className={`flex flex-col md:hidden py-20 gap-4 lg:gap-8  bg-purple-500 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 transition duration-500`}>
+                    <div onClick={closeMenu} className='absolute right-6 top-6'>
+                        <img src={assets.close_black} className='w-5 cursor-pointer' alt="" />
+                    </div>
+                    <li><a onClick={closeMenu} href="#">Home</a></li>
+                    <li><a onClick={closeMenu} href="#about">About</a></li>
+                    <li><a onClick={closeMenu} href="#skills">Skills</a></li>
+                    <li><a onClick={closeMenu} href="#projects">Projects</a></li>
+                </ul>
+        
             </nav>
-        </div>
+        </>
     )
 }
 
