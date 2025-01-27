@@ -86,13 +86,13 @@ export const ProjectData = [
         title: 'Image Generator',
         description: 'Fullstack project',
         bgImage: ImageGen,
-        url:'https://github.com/Venu-kodam/Sneaky-ecommerce'
+        url:'https://github.com/Venu-kodam/ArtGenie-ImageGenerator'
     },
     {
         title: 'Crypto Tracker',
         description: 'Frontend project',
         bgImage: cryptoTracker,
-        url:'https://github.com/Venu-kodam/Sneaky-ecommerce'
+        url:'https://github.com/Venu-kodam/CryptoHawk'
     },
     {
         title: 'Car management system',
